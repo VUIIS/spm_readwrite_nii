@@ -52,13 +52,6 @@ Also see the help text for the various functions. Compressed nifti files (`.nii.
     # Then we can reshape it back later to be ready to write to file
     Yout = reshape(Yr',origsize);
     
-    # And write. Re-use the previous V structure to get correct Nifti
-    # header info, but remove the pinfo field to let SPM auto-scale 
-    # the values, and change the filename
-    outfname = 'processed_image.nii';
-    Vout = rmfield(V,'pinfo');
-    Vout.fname = outfname;
-    
     # To write, we set a filename, then we have to write a single volume 
     # at a time.    
     outfname = 'processed_image.nii';
