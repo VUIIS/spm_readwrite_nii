@@ -16,7 +16,7 @@ SPM12 license: See LICENCE.txt
         spm_unlink.m*
         spm_vol_nifti.m
         @nifti/*
-	@file_array/*
+    @file_array/*
      spm_read_vols.m
         spm_check_orientations.m
            spm_mesh_detect.m
@@ -25,8 +25,8 @@ SPM12 license: See LICENCE.txt
         spm_type.m
      spm_write_vol.m
         spm_create_vol.m
-	   spm_file.m
-	spm_write_plane.m
+       spm_file.m
+    spm_write_plane.m
 
 
 ## Usage
@@ -36,56 +36,56 @@ Also see the help text for the various functions. Compressed nifti files (`.nii.
 ### Single 3D or 4D .nii
 
     # Read a single 3D or 4D nifti file. V contains Nifti header
-	# information in an SPM-specific format. Y contains the image data
-	# after applying header scaling factor. XYZ contains world space 
-	# coordinates in mm, computed from the Nifti header sform/qform.
+    # information in an SPM-specific format. Y contains the image data
+    # after applying header scaling factor. XYZ contains world space 
+    # coordinates in mm, computed from the Nifti header sform/qform.
     fname = 'image.nii';
     V = spm_vol(fname);
-	[Y,XYZ] = spm_read_vols(V);
-	
-	# If it's a 4D series like fMRI, we can reshape to a 2D time x voxel
-	# matrix, which is often useful for processing
-	origsize = size(Y);
-	numvols = origsize(4);
-	Yr = reshape(Y,[],numvols)';
-	
-	# Then we can reshape it back later to be ready to write to file
-	Yout = reshape(Yr',origsize);
+    [Y,XYZ] = spm_read_vols(V);
     
-	# And write. Re-use the previous V structure to get correct Nifti
-	# header info, but remove the pinfo field to let SPM auto-scale 
-	# the values, and change the filename
-	outfname = 'processed_image.nii';
-	Vout = rmfield(V,'pinfo');
-	Vout.fname = outfname;
+    # If it's a 4D series like fMRI, we can reshape to a 2D time x voxel
+    # matrix, which is often useful for processing
+    origsize = size(Y);
+    numvols = origsize(4);
+    Yr = reshape(Y,[],numvols)';
     
-	# To write, we set a filename, then we have to write a single volume 
-	# at a time.	
-	outfname = 'processed_image.nii';
-	
-	for v = 1:numvols
-	
-	    # Re-use the original V to get correct headers, but remove
-		# the scaling info so SPM can rescale appropriately. Same 
-		# scale factor is used for all volumes.
-	    thisV = rmfield(V(v),'pinfo');
-		
-		# Choose a data type. float32 is a good compromise between
-		# low digitization error and small file size
-	    thisV.dt(1) = spm_type('float32');
-		
-		# Alternatively, for integer valued data like ROI images, we
-		# should NOT let SPM autoscale - instead fix the scaling factor
-		# at 1 and use an integer datatype
-		#thisV = V(v);
-		#thisV.pinfo(1:2) = [1;0];
-		#thisV.dt(1) = spm_type('uint16');
-		
-		# Don't forget to set the filename so we don't overwrite existing
-	    thisV.fname = outfname;
+    # Then we can reshape it back later to be ready to write to file
+    Yout = reshape(Yr',origsize);
+    
+    # And write. Re-use the previous V structure to get correct Nifti
+    # header info, but remove the pinfo field to let SPM auto-scale 
+    # the values, and change the filename
+    outfname = 'processed_image.nii';
+    Vout = rmfield(V,'pinfo');
+    Vout.fname = outfname;
+    
+    # To write, we set a filename, then we have to write a single volume 
+    # at a time.    
+    outfname = 'processed_image.nii';
+    
+    for v = 1:numvols
+    
+        # Re-use the original V to get correct headers, but remove
+        # the scaling info so SPM can rescale appropriately. Same 
+        # scale factor is used for all volumes.
+        thisV = rmfield(V(v),'pinfo');
         
-		# And write this volume
-	    spm_write_vol(thisV,Yout(:,:,:,v));
+        # Choose a data type. float32 is a good compromise between
+        # low digitization error and small file size
+        thisV.dt(1) = spm_type('float32');
         
-	end
+        # Alternatively, for integer valued data like ROI images, we
+        # should NOT let SPM autoscale - instead fix the scaling factor
+        # at 1 and use an integer datatype
+        #thisV = V(v);
+        #thisV.pinfo(1:2) = [1;0];
+        #thisV.dt(1) = spm_type('uint16');
+        
+        # Don't forget to set the filename so we don't overwrite existing
+        thisV.fname = outfname;
+        
+        # And write this volume
+        spm_write_vol(thisV,Yout(:,:,:,v));
+        
+    end
 
