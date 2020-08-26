@@ -1,7 +1,7 @@
 # spm_readwrite_nii
 
 
-This is the 1% of the SPM12 Matlab r7487 code that is needed to read and write data and headers of Nifti files. The purpose of this is to provide a reliable tool to use Nifti files in Matlab when the rest of SPM isn't needed.
+This is the 1% of the SPM12 r7487 Matlab code that is needed to read and write data and headers of Nifti files. The purpose of this is to provide a reliable tool to use Nifti files in Matlab when the rest of SPM isn't needed.
 
 SPM12 info: http://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 
