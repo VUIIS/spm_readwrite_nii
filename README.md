@@ -73,8 +73,9 @@ function can be applied to written `.nii` files if desired.
         thisV.dt(1) = spm_type('float32');
         
         % Alternatively, for integer valued data like ROI images, we
-        % should NOT let SPM autoscale - instead fix the scaling factor
-        % at 1 and use an integer datatype
+        % should NOT let SPM autoscale, because it may store not-quite-integer
+        % values. Instead fix the scaling factor at 1 and use an integer 
+        % datatype
         %thisV = V(v);
         %thisV.pinfo(1:2) = [1;0];
         %thisV.dt(1) = spm_type('uint16');
