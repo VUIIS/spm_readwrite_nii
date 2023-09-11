@@ -38,7 +38,7 @@ Also see the help text for the various functions. Compressed nifti files
 (`.nii.gz`) can generally be read on linux, but not written. Matlab's gzip 
 function can be applied to written `.nii` files if desired.
 
-### Single 3D or 4D .nii
+### Single 3D .nii
 
     % Read a single 3D or 4D nifti file. V contains Nifti header
     % information in an SPM-specific format. Y contains the image data
@@ -47,7 +47,9 @@ function can be applied to written `.nii` files if desired.
     fname = 'image.nii';
     V = spm_vol(fname);
     [Y,XYZ] = spm_read_vols(V);
-    
+
+### Single 4D .nii
+
     % If it's a 4D series like fMRI, we can reshape to a 2D time x voxel
     % matrix, which is often useful for processing
     origsize = size(Y);
