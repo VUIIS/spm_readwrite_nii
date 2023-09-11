@@ -40,10 +40,10 @@ function can be applied to written `.nii` files if desired.
 
 ### Single 3D .nii
 
-    % Read a single 3D or 4D nifti file. V contains Nifti header
-    % information in an SPM-specific format. Y contains the image data
-    % after applying header scaling factor. XYZ contains world space 
-    % coordinates in mm, computed from the Nifti header sform/qform.
+    % Read a single 3D nifti file. V contains Nifti header information in 
+    % an SPM-specific format. Y contains the image data after applying the 
+    % header scaling factor. XYZ contains world space coordinates in mm, 
+    % computed from the Nifti header sform/qform.
     fname = 'image.nii';
     V = spm_vol(fname);
     [Y,XYZ] = spm_read_vols(V);
