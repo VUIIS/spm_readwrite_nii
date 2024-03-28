@@ -4,7 +4,7 @@
 # and then run this to get the needed bits
 
 for f in \
-LICENSE.txt \
+LICENCE.txt \
 spm_vol.m \
 spm_fileparts.m \
 spm_existfile.m* \
