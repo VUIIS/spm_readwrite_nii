@@ -2,9 +2,13 @@
 
 https://github.com/VUIIS/spm_readwrite_nii
 
-This is the 1% of the SPM12 r7487 Matlab code that is needed to read and write 
+This is the 1% of the SPM12 Matlab code that is needed to read and write 
 data and headers of Nifti files. The purpose of this is to provide a reliable 
 tool to use Nifti files in Matlab when the rest of SPM isn't needed.
+
+Source is https://github.com/spm/spm12/tree/c28485d, which is SPM12 r7771
+but updated for Mac Silicon binaries. This version has not been actually 
+released as of 2024 Mar 28.
 
 SPM12 info: http://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 
