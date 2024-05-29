@@ -14,6 +14,13 @@ SPM12 info: http://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 
 SPM12 license: See LICENCE.txt
 
+For newer Macs, execute permissions can be granted all at once with this
+command in Terminal:
+
+    sudo xattr -dr com.apple.quarantine <path>
+
+Where `<path>` is the base path where this code was installed.
+
 
 ## Files included from the SPM distribution
 
